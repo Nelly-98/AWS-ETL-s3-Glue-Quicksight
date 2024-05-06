@@ -48,5 +48,9 @@ Voici les étapes principales de notre flux de travail Glue :
 - Création de visualisations : À l'aide du DataSet, nous créons des visualisations telles que des graphiques, des tableaux croisés dynamiques, etc., pour analyser les données.
 - Création de tableaux de bord : Nous utilisons ces visualisations pour créer des tableaux de bord interactifs qui fournissent un aperçu complet des données transformées.
 
+![alt text](https://github.com/Nelly-98/AWS-ETL-s3-Glue-Quicksight/blob/main/visualisation.png)
 
 Ce README est conçu pour fournir une base sur laquelle vous pouvez construire. Selon la complexité et les besoins spécifiques de votre projet, vous pourriez vouloir ajouter plus de détails sur la configuration, l'utilisation des secrets, la sécurité, et d'autres meilleures pratiques.
+
+
+
