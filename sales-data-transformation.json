@@ -1,0 +1,121 @@
+{
+	"jobConfig": {
+		"name": "sales-data-transformation",
+		"description": "",
+		"role": "arn:aws:iam::654654466828:role/service-role/AWSGlueServiceRole-SalesData",
+		"command": "glueetl",
+		"version": "4.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 2,
+		"maxCapacity": 2,
+		"maxRetries": 3,
+		"timeout": 5,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "sales-data-transformation.scala",
+		"scriptLocation": "s3://aws-glue-assets-654654466828-us-west-2/scripts/",
+		"language": "scala",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2024-05-06T11:13:23.732Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-654654466828-us-west-2/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": false,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-654654466828-us-west-2/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null,
+		"pythonPath": ""
+	},
+	"dag": {
+		"node-1714993473296": {
+			"nodeId": "node-1714993473296",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1714993143766"
+			],
+			"name": "Select Fields",
+			"generatedNodeName": "SelectFields_node1714993473296",
+			"classification": "Transform",
+			"type": "SelectFields",
+			"paths": [
+				"ordernumber",
+				"quantityordered",
+				"priceeach",
+				"orderlinenumber",
+				"sales",
+				"orderdate",
+				"status",
+				"qtr_id",
+				"month_id",
+				"year_id",
+				"productline"
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1714993143766": {
+			"nodeId": "node-1714993143766",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1714993143766",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": true,
+			"database": "salesdata",
+			"table": "data_engineering_project_bucket1",
+			"partitionPredicate": "",
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"boundedOption": null
+			},
+			"calculatedType": "CatalogS3DataSource",
+			"codeGenVersion": 2
+		},
+		"node-1714993606044": {
+			"nodeId": "node-1714993606044",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1714993473296"
+			],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1714993606044",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "csv",
+			"compression": "snappy",
+			"path": "s3://data-engineering-project-bucket2",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false,
+				"updateBehavior": null,
+				"database": null,
+				"table": null
+			},
+			"updateCatalogOptions": "none",
+			"autoDataQuality": {
+				"isEnabled": false,
+				"evaluationContext": null
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false
+}
